@@ -1,25 +1,31 @@
-import { StyleSheet, Text, View } from 'react-native'; 
+import React, { useEffect, useContext } from "react";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { UserContext } from "../../globalState/userContext";
 
-export default function UserProfile({isLoggedIn}) {
-    // const isLoggedIn = true
+export default function UserProfile() {
+  const {user,setUser} = useContext(UserContext);
 
-    const name = "Jill"
-    const element = <Text>Hello, {name}</Text>
+  useEffect(() => {
+    console.log('====================================');
+    console.log("Updated UserProfile", user);
+    console.log('====================================');
+  }, [user]);
 
-    return(
-    // const element1 = (
-        <View>
-            <Text>{isLoggedIn? element :"Guest"}!</Text>
-            {isLoggedIn && (
-                <View style={{ marginRight: 10 }}>
-                    <Text>Logout</Text>
-                </View>
-            )
-            }
+  const handleLogout=()=>{
+    setUser({})
+  }
+
+  return (
+    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+      <Text style={{ color: "white", paddingHorizontal: 10 }}>
+      <Text>Hello, </Text> {user?.isLoggedIn ? user?.email : "Guest"}!!
+      </Text>
+      {user?.isLoggedIn && (
+        <View style={{ color: "white", paddingHorizontal: 10 }}>
+          <Text onPress={handleLogout} style={{ color: "white" }}>Logout</Text>
         </View>
-    )
-
-    //returning a variable (containing jsx)
-    // return element1
+      )}
+    </View>
+  );
 }
-

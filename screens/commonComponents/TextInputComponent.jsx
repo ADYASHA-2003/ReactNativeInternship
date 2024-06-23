@@ -1,93 +1,131 @@
-import React, { useState } from 'react'
-import { TextInput, View, Text, StyleSheet, TouchableHighlight, TouchableOpacity, ImageBackground } from 'react-native'
+import React, { useContext, useState } from "react";
+import {
+  TextInput,
+  View,
+  Text,
+  StyleSheet,
+  TouchableHighlight,
+  TouchableOpacity,
+  ImageBackground,
+  Alert,
+} from "react-native";
+import { UserContext } from "../../globalState/userContext";
 
 export default function TextInputComponent() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [name,setName] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passError, setPassError] = useState("");
+  const { setUser } = useContext(UserContext);
 
-    // setInterval(()=>{
-    //     console.log("Set Interval running....");
-    // },3000)
+  const validateEmail = () => {
+    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+    return emailRegex.test(email);
+  };
 
+  const handleLogin = () => {
+    let isValid = true;
+    setEmailError("");
+    setPassError("");
 
- const image = {uri:'https://img.freepik.com/free-psd/flat-man-character_23-2151534195.jpg?t=st=1718711633~exp=1718715233~hmac=707433f58a587abc38824a833ceeb1e16902d414613a8ce9ec57c7ed91910c68&w=1380'}
+    if (!email) {
+      setEmailError("Email is required");
+      isValid = false;
+    } else if (!validateEmail(email)) {
+      setEmailError("Please enter a valid email");
+      isValid = false;
+    }
 
+    if (!password) {
+      setPassError("Password is required");
+      isValid = false;
+    } else if (password.length < 6) {
+      setPassError("Password must be at least 6 characters long");
+      isValid = false;
+    }
 
-    // const [user, setUser]=useState({
-    //     name:"",
-    //     email:"",
-    //     password:""
-    // })
+    if (isValid) {
+      console.log("Entered Email:", email);
+      console.log("Entered Password:", password);
+      // setUser({
+      //   email: email,
+      //   isLoggedIn: true,
+      // });
+      Alert.alert('Logged In Successfully')
+      setEmail("")
+      setPassword("")
+    }
+  };
 
-    // const onChangeText = text =>{
-    //     setInputText(text)
-    // }
   return (
-
-    <ImageBackground source={image} resizeMode='cover' style={styles.imageBg}>
     <View style={styles.container}>
-        <Text style={{textAlign:'center',marginBottom:30,fontSize: 36,}}>Get Started with Us</Text>
-    <Text>Name</Text>
-    <TextInput  style={styles.input} onChangeText={text =>{setName(text)}} value={name} placeholder='Enter Full Name:'/>
-
       <Text>Email</Text>
-      <TextInput style={styles.input} onChangeText={text =>{setEmail(text)}} value={email} placeholder='Enter email:'/>
-
-      <Text>Password</Text>
-      <TextInput  style={styles.input} secureTextEntry={true} onChangeText={text =>{setPassword(text)}} value={password} placeholder='Enter password:'/>
-
-        
-
-      
-      {/* <Text>Name</Text>
-      <TextInput style={styles.input} onChangeText={text =>{setUser(text)}} value={user.name} placeholder='Enter Full Name:'/>
-
-      <Text>Email</Text>
-      <TextInput style={styles.input} onChangeText={text =>{setUser(text)}} value={user.email} placeholder='Enter Email:'/>
-
-      <Text>Password</Text>
-      <TextInput  style={styles.input} secureTextEntry={true} onChangeText={text =>{setUser(text)}} value={user.password} placeholder='Enter Password:'/>
-
-      <Text>Confirm Password</Text>
-      <TextInput  style={styles.input} secureTextEntry={true} onChangeText={text =>{setUser(text)}} value={user.password} placeholder='Enter Password:'/> */}
-
-      <TouchableOpacity style={styles.submitBtn} onPress={()=>{
-            // console.log('Current Email:', email);
-            // console.log('Current Password:', password);
-            console.log('Entered Name:',name);
-            console.log('Entered Email:',email);
-            console.log('Entered Password:',password);
+      <TextInput
+        style={styles.input}
+        onChangeText={(text) => {
+          setEmail(text);
         }}
-        onLongPress={()=>{
-            console.log('OnLongPress called');
-        }}>
-            <Text style={{textAlign:'center',color:'white',fontWeight:'bold'}}>Register</Text>
-        </TouchableOpacity>
+        value={email}
+        placeholder="Enter email:"
+      />
+      {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
 
-        <Text style={{textAlign:'center',marginTop:15}}>Already have an account?? Login!</Text>
+      <Text>Password</Text>
+      <TextInput
+        style={styles.input}
+        secureTextEntry={true}
+        onChangeText={(text) => {
+          setPassword(text);
+        }}
+        value={password}
+        placeholder="Enter password:"
+      />
+      {passError ? <Text style={styles.errorText}>{passError}</Text> : null}
 
+      <TouchableOpacity
+        style={styles.submitBtn}
+        onPress={handleLogin}
+        onLongPress={() => {
+          console.log("OnLongPress called");
+        }}
+      >
+        <Text
+          style={{ textAlign: "center", color: "white", fontWeight: "bold" }}
+        >
+          Login
+        </Text>
+      </TouchableOpacity>
+
+      <Text style={{ textAlign: "center", marginTop: 15 }}>
+        Don't have an account?? <Text style={{ color: "blue" }}>Register!</Text>
+      </Text>
     </View>
-    </ImageBackground>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-    input:{
-        height: 40,
-        width: 300,
-        borderWidth: 1,
-        borderRadius:'5px',
-        padding: 10,
-        marginBottom:20
-    },
-    submitBtn:{
-        backgroundColor: "gold",
-        width: 300,
-        borderColor: "gold",
-        marginTop: 10,
-        borderRadius:'5px',
-        borderWidth: 1,
-        padding: 10
-    }
-})
+  errorText: {
+    color: "red",
+    fontSize:15,
+    marginBottom: 2,
+    height:20
+  },
+  input: {
+    height: 40,
+    width: 300,
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 5,
+  },
+  submitBtn: {
+    backgroundColor: "gold",
+    width: 300,
+    borderColor: "gold",
+    marginTop: 10,
+    borderRadius: 10,
+    borderWidth: 1,
+    padding: 10,
+  },
+});

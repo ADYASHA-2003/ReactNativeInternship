@@ -1,11 +1,11 @@
 import React from 'react'
 import { View,Button, StyleSheet, TouchableOpacity,Text } from 'react-native'
 
-const Buttoncomp =({title, kind, variant, onPress, size})=> {
+const Buttoncomp =({title, kind, variant, onPress, size,})=> {
 
   const buttonStyles={
     rounded:{
-      borderRadius:'20px',
+      borderRadius:10,
       backgroundColor:'#a881af',
       borderWidth:1,
       borderColor:'#a881af',
@@ -23,13 +23,13 @@ const Buttoncomp =({title, kind, variant, onPress, size})=> {
 
   const variantStyles={
     primary:{
-      backgroundColor:'#24a0ed',   //#3B71CA
+      backgroundColor:'#24a0ed', 
       borderColor:'#24a0ed',
       padding:'10px',
       width:'100px',
     },
     secondary:{
-      backgroundColor:'gray',      //#9FA6B2
+      backgroundColor:'gray',  
       borderColor:'gray',
       padding:'10px',
       width:'100px',
@@ -58,7 +58,7 @@ const Buttoncomp =({title, kind, variant, onPress, size})=> {
   }
 
   return (
-    <View>
+  <View style={{marginBottom:10}}>
       <TouchableOpacity style={[styles.button,buttonStyles[kind],variantStyles[variant],sizeStyles[size]]} title={title} onPress={onPress}>
         <Text style={{color:'white',textAlign:'center'}}>
           {title}
@@ -70,7 +70,7 @@ const Buttoncomp =({title, kind, variant, onPress, size})=> {
 
 const styles = StyleSheet.create({
     button:{
-        borderRadius:'8px',
+        borderRadius:10,
         borderWidth:1,
         borderColor:'#33b249',
         padding:'10px',
