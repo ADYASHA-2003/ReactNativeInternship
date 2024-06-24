@@ -8,13 +8,27 @@
 #### Assignment-2
 
 ###### Registration Page
-<img src="images/Registerpg.jpg" alt="Welcome Page" width="300" style="border: 1px solid black;"/>
+<img src="images/Registerpg.jpg" alt="Register Page" width="300" style="border: 1px solid black;"/>
 
 ###### Login Page
 <img src="images/loginpg.jpg" alt="Login Page" width="300" style="border: 1px solid black;"/>
 
 ###### Form Validation Added
-<img src="images/registervalidation1.jpg" alt="Login Page" width="300" style="border: 1px solid black;"/>
+<div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+  <img src="images/registervalidation1.jpg" alt="Register Validation" width="300" style="border: 1px solid black;"/>
+  <img src="images/loginValidation1.jpg" alt="Login Validation" width="300" style="border: 1px solid black;"/>
+</div>
+
+<div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+  <img src="images/regValidation2.jpg" alt="Register Validation" width="300" style="border: 1px solid black;"/>
+  <img src="images/loginValidation2.jpg" alt="Login Validation" width="300" style="border: 1px solid black;"/>
+</div>
+
+###### Form Submission Success
+<div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+  <img src="images/registrationSuccess.jpg" alt="Registration Success" width="300" style="border: 1px solid black;"/>
+  <img src="images/loginSuccess.jpg" alt="Login Success" width="300" style="border: 1px solid black;"/>
+</div>
 
 #### Assignment-3
 
