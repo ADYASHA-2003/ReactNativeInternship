@@ -1,18 +1,8 @@
-// import React from 'react'
-// import { Text, View } from 'react-native'
-
-// export default function ProductsPage() {
-//   return (
-//     <View>
-//       <Text>Products Page</Text>
-//     </View>
-//   )
-// }
-
 import { useState } from "react";
 import { FlatList,Dimensions, TouchableOpacity, View, StyleSheet,Text } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import ProductCard from "../commonComponents/ProductCard";
+// import { CartContext } from "../contexts/cartContext"; 
 
 const { width } = Dimensions.get('window');
 
@@ -23,6 +13,7 @@ const ProductsPage = () => {
     setIsGrid((prevIsGrid) => !prevIsGrid);
   };
 
+  const { cart } = useContext(CartContext);
   const products = [
     {
       id: "1",

@@ -28,14 +28,21 @@
 // export default Home;
 
 
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity,  Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 const { width } = Dimensions.get("window");
 
 
-export default function Home({navigation}) {
+export default function Home({navigation,route}) {
   // const image = require('../../assets/Home.jpg')
+  useEffect(()=>{
+    console.log('Home');
+    console.log(route.params);
+    return ()=>{
+
+    }
+  },[route])
   const image =
     "https://img.freepik.com/free-vector/sales-consulting-concept-illustration_114360-9147.jpg?w=1060&t=st=1718803434~exp=1718804034~hmac=f90902e6dbe1cb5496700ce77b786faf76f67674c3cdb3984bd3153195d975a5";
   return (

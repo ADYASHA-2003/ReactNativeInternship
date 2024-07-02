@@ -1,0 +1,2 @@
+npx expo-doctor -> prompts possible fixes for problems in project 
+ddowngrade as per required

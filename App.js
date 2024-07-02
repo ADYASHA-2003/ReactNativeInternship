@@ -8,8 +8,11 @@ import {
 } from "react-native";
 
 import Welcome from "./EcommerceApp/screens/Welcome";
-// import WelcomeNew from "./EcommerceApp/screens/WelcomeNew"
-// import Welcome3 from "./EcommerceApp/screens/Welcome3";
+import WelcomeNew from "./EcommerceApp/screens/WelcomeNew"
+import Welcome3 from "./EcommerceApp/screens/Welcome3";
+import NestedListDemo from "./screens/demo/NestedListDemo";
+import ShoppingProvider from './EcommerceApp/contexts/shoppingContext'
+import TestComponent from "./EcommerceApp/commonComponents/TestComponent";
 // import ProductsPage from ""
 
 export default function App() {
@@ -17,12 +20,16 @@ export default function App() {
 
 
   return (
+      <ShoppingProvider>
     <View style={styles.container}>
-      <Welcome/>
-      {/* <WelcomeNew/> */}
+      {/* <Welcome/> */}
+      <WelcomeNew/>
+      {/* <TestComponent/> */}
+      {/* <NestedListDemo/> */}
       {/* <Welcome3/> */}
       {/* <ProductsPage/> */}
     </View>
+     </ShoppingProvider>
   );
 }
 

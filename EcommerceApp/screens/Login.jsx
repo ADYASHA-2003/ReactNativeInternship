@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import {
   TextInput,
   TouchableOpacity,
@@ -7,8 +7,14 @@ import {
   Text,
   Alert,
 } from "react-native";
+import ProductsPage2 from "../screens/ProductsPage2";
+import DashBoard from '../screens/DashBoard'
+import { ShoppingContext } from "../contexts/shoppingContext";
+import { AUTH_USER_ACTIONS } from "../actions/authUserActions";
 
+//Stack screen for this page do headerShown : false
 export default function LoginPage({ navigation }) {
+  const {authUserDispatch} = useContext(ShoppingContext)
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
@@ -58,7 +64,7 @@ export default function LoginPage({ navigation }) {
       Alert.alert("Logged In Successfully");
       setEmail("");
       setPass("");
-      navigation.navigate("ProductsPage");
+      navigation.navigate("DashBoard");
     }
   };
 
@@ -95,7 +101,33 @@ export default function LoginPage({ navigation }) {
         onPress={handleLogin}
         onLongPress={() =>
           //   Alert.alert("Click once to proceed on submitting login form");
-          navigation.navigate("ProductsPage")
+          // navigation.navigate('DashBoard')
+          {
+            console.log("Input mail",email);
+            console.log("Input Password",pass);
+            fetch("https://dummyjson.com/auth/login",{
+              method:'POST',
+              headers:{"Content-Type":"application/json"},
+              body:JSON.stringify({
+                username: 'emilys',
+                password:'emilyspass',
+              })
+            })
+            .then(async(res)=>{
+              const data = await res.json()
+              if(!res.ok){
+                console.log("Error");
+                setErrorMessage(data?.message || "Somrthing went wrong")
+              }
+              else{
+                authUserDispatch({
+                  type:AUTH_USER_ACTIONS.SET_ALL_USERS,
+                  payload:data
+                })
+                navigation.navigate('DashBoard')
+              }
+            })
+          }
         }
       >
         <Text

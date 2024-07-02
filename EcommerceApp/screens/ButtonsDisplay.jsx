@@ -4,7 +4,6 @@ import Buttoncomp from "../commonComponents/Buttoncomp";
 
 const { width } = Dimensions.get("window");
 
-
 export default function ButtonsDisplay() {
   return (
     <View style={{flex:1,justifyContent:'center',alignItems:'center',width:width,backgroundColor:'black'}}>

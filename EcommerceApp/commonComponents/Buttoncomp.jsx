@@ -1,7 +1,7 @@
 import React from 'react'
 import { View,Button, StyleSheet, TouchableOpacity,Text } from 'react-native'
 
-const Buttoncomp =({title, kind, variant, onPress, size,})=> {
+const Buttoncomp =({title, kind, variant, onPress, size,iconOnly })=> {
 
   const buttonStyles={
     rounded:{
@@ -10,7 +10,8 @@ const Buttoncomp =({title, kind, variant, onPress, size,})=> {
       borderWidth:1,
       borderColor:'#a881af',
       padding:'10px',
-      width:'100px',
+      // width:'100px',
+      width: iconOnly ? 60 : (size === 'lg' ? 200 : (size === 'md' ? 120 : 100))
     },
     outlined:{
       borderColor:'violet',
@@ -59,10 +60,20 @@ const Buttoncomp =({title, kind, variant, onPress, size,})=> {
 
   return (
   <View style={{marginBottom:10}}>
-      <TouchableOpacity style={[styles.button,buttonStyles[kind],variantStyles[variant],sizeStyles[size]]} title={title} onPress={onPress}>
+      {/* <TouchableOpacity style={[styles.button,buttonStyles[kind],variantStyles[variant],sizeStyles[size]]} title={title} onPress={onPress}>
         <Text style={{color:'white',textAlign:'center'}}>
           {title}
         </Text>
+      </TouchableOpacity> */}
+       <TouchableOpacity style={[styles.button, styles.buttonCommon, buttonStyles[kind], variantStyles[variant], sizeStyles[size]]} onPress={onPress}>
+        {!iconOnly &&
+          <Text style={{ color: 'white', textAlign: 'center' }}>
+            {title}
+          </Text>
+        }
+        {iconOnly &&
+          <Ionicons name="ios-heart" size={32} color="white" /> 
+        }
       </TouchableOpacity>
     </View>
   )

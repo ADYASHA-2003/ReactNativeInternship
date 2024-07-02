@@ -1,6 +1,9 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
+
 const ProductCard = ({ product, isGrid }) => {
+  // const { dispatch } = useContext(CartContext);
+
   return (
     <View style={[styles.card, isGrid ? styles.gridCard : styles.listCard]}>
       <View style={styles.imageContainer}>
@@ -23,6 +26,7 @@ const ProductCard = ({ product, isGrid }) => {
         <View style={styles.descriptionContainer}>
           <Text style={styles.productDescription}>{product.description}</Text>
           <Text style={styles.productPrice}>${product.price.toFixed(2)}</Text>
+          <View style={styles.actionBtns}>
           <TouchableOpacity style={styles.addToCartBtn}>
             <Text
               style={{
@@ -30,10 +34,24 @@ const ProductCard = ({ product, isGrid }) => {
                 color: "white",
                 fontWeight: "bold",
               }}
+              // onPress={()=>dispatch({ type: CART_ACTIONS.ADD_TO_CART, payLoad: product })}
             >
               ADD TO CART
             </Text>
           </TouchableOpacity>
+          {/* <TouchableOpacity style={styles.addToCartBtn}>
+            <Text
+              style={{
+                textAlign: "center",
+                color: "white",
+                fontWeight: "bold",
+              }}
+            >
+              BUY NOW
+            </Text>
+          </TouchableOpacity> */}
+          </View>
+          
         </View>
       </View>
     </View>
@@ -54,6 +72,9 @@ const styles = StyleSheet.create({
   },
   gridCard: {
     width: "45%",
+  },
+  actionBtns:{
+    flexDirection:'row'
   },
   listCard: {
     width: "95%",
@@ -91,12 +112,12 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   addToCartBtn: {
-    backgroundColor: "gold",
+    backgroundColor: "#007bff",
+    // backgroundColor: "black",
     padding: 5,
     margin: 5,
     borderRadius: 5,
     marginTop:10
-    // width:100
   },
   imageContainer: {
     position: "relative",
