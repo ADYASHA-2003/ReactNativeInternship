@@ -27,19 +27,7 @@ export default ShoppingProvider = ({ children }) => {
     const [products, productsDispatch] = useReducer(productReducer, initialProductState );
     const [authUser, authUserDispatch] = useReducer(authUserReducer, initialUserState );
     const [wishlist, wishlistDispatch] = useReducer(wishlistReducer, initialWishlistState)
-    
-// const getTotalItems = () => cart.reduce((total, item) => total + item.quantity, 0);
-// useEffect(() => {t-
-//     // Simulating a fetch request to get user data
-//     fetch("https://dummyjson.com/auth/user")
-//       .then((res) => res.json())
-//       .then((data) => {
-//         authUserDispatch({ type: "SET_USER", payload: data });
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching user data:", error);
-//       });
-//   }, []);
+
 
     return (<ShoppingContext.Provider value={{ cart,cartDispatch,authUserDispatch,productsDispatch,authUser,products,wishlist, wishlistDispatch }}>
         {children}

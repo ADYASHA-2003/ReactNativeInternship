@@ -1,96 +1,78 @@
-// import React from "react";
-// import { StyleSheet, View, Text, Button } from "react-native";
-
-// const Home = ({ navigation }) => {
-//   return (
-//     <View style={styles.container}>
-//       <Text style={styles.text}> Home Screen </Text>
-//       <Button
-//         title="Click to navigate to home screen"
-//         onPress={() => navigation.navigate("Dashboard")}
-//       />
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
-//     // height:500
-//   },
-//   text: {
-//     fontSize: 25
-//   }
-// });
-
-// export default Home;
-
-
-import React, { useEffect } from "react";
-import { View, Image, Text, StyleSheet, TouchableOpacity,  Dimensions } from "react-native";
+import React from "react";
+import { View, ImageBackground, Text, StyleSheet, TouchableOpacity, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
-
-export default function Home({navigation,route}) {
-  // const image = require('../../assets/Home.jpg')
-  useEffect(()=>{
-    console.log('Home');
-    console.log(route.params);
-    return ()=>{
-
-    }
-  },[route])
+export default function Home({ navigation, route }) {
   const image =
-    "https://img.freepik.com/free-vector/sales-consulting-concept-illustration_114360-9147.jpg?w=1060&t=st=1718803434~exp=1718804034~hmac=f90902e6dbe1cb5496700ce77b786faf76f67674c3cdb3984bd3153195d975a5";
+    "https://images.unsplash.com/photo-1522643628976-0a170f6722ab?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D";
+
   return (
-    <View style={styles.container}>
-      <Text style={{ padding: "20px", fontWeight: "600", fontSize: 15,marginBottom:25 }}>
-        {" "}
-        Your One-Stop Shop for All Your Needs!
-      </Text>
-      <Image source={{ uri: image }} style={{ width: width, height: 400,marginBottom:20 }} />
-      <Text>Start Shopping With</Text>
-      <Text style={{ fontWeight: "800" }}>TROVE</Text>
+    <ImageBackground source={{ uri: image }} style={styles.imageBackground}>
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>
+          Your One-Stop Shop for All Your Needs!
+        </Text>
+        <Text style={styles.subtitle}>Start Shopping With</Text>
+        <Text style={styles.logoText}>TROVE</Text>
+      </View>
+
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Login")
+          navigation.navigate("Login");
           console.log("Navigate to Registration Page");
         }}
         style={styles.button}
       >
-        <View style={{flexDirection:'row'}}>
-        <Text style={{ color: "white", fontSize: 20, fontWeight: "500" }}>
-          Get Started
-        </Text>
-        <Icon name="arrow-forward" size={20} color="white" style={{marginTop:4,marginLeft:3}} />
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Text style={{ color: "white", fontSize: 20, fontWeight: "500" }}>
+            Get Started
+          </Text>
+          <Icon name="arrow-forward" size={20} color="white" style={{ marginLeft: 5 }} />
         </View>
-
       </TouchableOpacity>
-      <TouchableOpacity onPress={()=>navigation.navigate("ButtonsDisplay")}>
-        <Text style={{ color: "black", fontSize: 20, fontWeight: "500" }}>View Button Component</Text>
-      </TouchableOpacity>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
+  imageBackground: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
+  textContainer: {
     flex: 1,
     justifyContent: "center",
-    // width:width
+    alignItems: "center",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "black",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  subtitle: {
+    fontSize: 18,
+    color: "white",
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  logoText: {
+    fontSize: 32,
+    fontWeight: "bold",
+    color: "white",
+    textAlign: "center",
+    marginBottom: 40,
   },
   button: {
-    margin: 15,
     backgroundColor: "gold",
-    padding: 10,
-    color: "white",
-    fontWeight: "bold",
-    width: 250,
-    alignItems: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 24,
     borderRadius: 10,
+    alignSelf: "center",
+    marginBottom: 50,
   },
 });
+

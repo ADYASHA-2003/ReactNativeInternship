@@ -1,8 +1,5 @@
-// Header.js
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet ,Image} from 'react-native';
-// // import AntDesign from 'react-native-vector-icons/AntDesign';
-// import { AntDesign } from '@expo/vector-icons';
 
 const CategoryHeader = ({ categories, onCategorySelect }) => {
   return (

@@ -11,6 +11,7 @@ import ButtonsDisplay from "./ButtonsDisplay";
 import WelcomeNew from "./WelcomeNew";
 import { View } from "react-native";
 import shoppingContext from "../contexts/shoppingContext";
+// import Splash from "./Splash";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,11 +20,12 @@ const Welcome = () => {
     <ShoppingProvider>
     <NavigationContainer>
     <View style={styles.container}>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Login" component={Login} />
-        {/* <Stack.Screen name="Register" component={Register} /> */}
-        <Stack.Screen name="DashBoard" component={WelcomeNew}/>
+      <Stack.Navigator initialRouteName="Home">
+        {/* <Stack.Screen name="Splash" component={Splash} options={{headerShown:false}}/> */}
+        <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
+        <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
+        <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
+        <Stack.Screen name="DashBoard" component={WelcomeNew} options={{headerShown:false}}/>
         {/* <Stack.Screen name="ProductsPage" component={ProductsPage} />
         <Stack.Screen name="ButtonsDisplay" component={ButtonsDisplay} /> */}
       </Stack.Navigator>

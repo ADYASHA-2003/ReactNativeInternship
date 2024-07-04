@@ -6,17 +6,15 @@ import { View, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Cart from "./Cart";
-// import ProductsPage from "./ProductsPage";
-// import ProductsPage2 from "./ProductsPage2";
 import Account from "./Account";
 import { ShoppingContext } from "../contexts/shoppingContext";
 import { useContext, useState, useEffect, useMemo } from "react";
 import ProductsStackScreen from "../stackScreens/ProductsStackScreens";
 import WishlistPage from "./WishlistPage";
 import ProfileStackScreen from "../stackScreens/ProfileStackScreen";
-// import ProfileStack from "../stackScreens/ProfileStack";
-// import Welcome from "./Welcome";
 import CartIconBadge from "../commonComponents/CartIconBadge";
+import CartStackScreens from "../stackScreens/CartStackScreens";
+import MainHome from "./MainHome";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,21 +30,13 @@ const screenOptions = {
 
 const WelcomeNew = () => {
   const { cart, wishlist } = useContext(ShoppingContext);
-  // // const cartItemsCount = useMemo(() => cart.length, [cart]);
 
-  // // const cartItemsCount = cart ? cart.length : 0;
-  // // const cartItemsCount = cart.reduce((total, item) => total + (item.quantity || 1), 0);
-  // console.log("Cart Length:",cart.length);
-  // const cartItemsCount = cart.length;
-  // const cartItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  // const cartItemsCount = cart.reduce((total, item) => total + item.quantity, 0);
-
-  console.log(wishlist.length);
+  // console.log(wishlist.length);
   // const wishlistItemCount = wishlist.length;
-  const wishlistItemCount = wishlist.reduce((total, item) => total + item.quantity, 0);
+  // const wishlistItemCount = wishlist.reduce((total, item) => total + item.quantity, 0);
 
   // const { cart } = useContext(ShoppingContext);
-  const cartItemsCount = cart.length;
+  // const cartItemsCount = cart.cart.length;
   // useEffect(() => {
   //   console.log("Length of cart inside welcome new: ", cart.cart.length);
   //   return () => {};
@@ -54,17 +44,17 @@ const WelcomeNew = () => {
 
   return (
     <ShoppingProvider>
-      <NavigationContainer>
+      {/* <NavigationContainer> */}
         <Tab.Navigator screenOptions={screenOptions}>
           <Tab.Screen
             name="Home"
-            component={DashBoard}
+            component={MainHome}
             options={{
               tabBarLabel: "Home",
               tabBarIcon: () => (
                 <View>
                   <AntDesign
-                    name="dashboard"
+                    name="home"
                     size={25}
                     style={{ color: "black" }}
                   />
@@ -102,11 +92,11 @@ const WelcomeNew = () => {
                     size={25}
                     style={{ color: "black" }}
                   />
-                  {wishlistItemCount > 0 && (
+                  {/* {wishlistItemCount > 0 && (
                     <View style={styles.badge}>
                       <Text style={styles.badgeText}>{wishlistItemCount}</Text>
                     </View>
-                  )}
+                  )} */}
                 </View>
               ),
               tabBarActiveTintColor: "blue",
@@ -131,18 +121,19 @@ const WelcomeNew = () => {
           />
           <Tab.Screen
             name="Cart"
-            component={Cart}
+            component={CartStackScreens}
             options={{
               tabBarLabel: "Cart",
               tabBarIcon: ({ color, size }) => (
                 // <AntDesign name="shoppingcart" size={25} style={{ color: "black" }} />
                 <View style={{ position: "relative" }}>
                   <AntDesign name="shoppingcart" size={size} color={color} />
-                  {cartItemsCount > 0 && (
+                  {/* {cartItemsCount > 0 && (
                     <View style={styles.badge}>
                       <Text style={styles.badgeText}>{cartItemsCount}</Text>
                     </View>
-                  )}
+                  )} */}
+                  {/* <CartIconBadge/> */}
                 </View>
               ),
               tabBarActiveTintColor: "blue",
@@ -164,28 +155,28 @@ const WelcomeNew = () => {
           }}
           /> */}
         </Tab.Navigator>
-      </NavigationContainer>
+      {/* </NavigationContainer> */}
     </ShoppingProvider>
   );
 };
 
-const styles = StyleSheet.create({
-  badge: {
-    position: "absolute",
-    top: -5,
-    right: -8,
-    backgroundColor: "red",
-    borderRadius: 10,
-    width: 20,
-    height: 20,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  badgeText: {
-    color: "yellow",
-    fontSize: 12,
-    fontWeight: "bold",
-  },
-});
+// const styles = StyleSheet.create({
+//   badge: {
+//     position: "absolute",
+//     top: -5,
+//     right: -8,
+//     backgroundColor: "red",
+//     borderRadius: 10,
+//     width: 20,
+//     height: 20,
+//     justifyContent: "center",
+//     alignItems: "center",
+//   },
+//   badgeText: {
+//     color: "yellow",
+//     fontSize: 12,
+//     fontWeight: "bold",
+//   },
+// });
 
 export default WelcomeNew;

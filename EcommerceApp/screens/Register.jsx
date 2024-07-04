@@ -206,6 +206,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor:'white'
   },
   initialText: {
     textAlign: "center",
@@ -223,6 +224,9 @@ const styles = StyleSheet.create({
     // marginBottom: 20,
     marginBottom: 5,
     borderColor: "gray",
+  },
+  inputContainer:{
+    marginBottom:15
   },
   submitBtn: {
     backgroundColor: "gold",
@@ -242,7 +246,7 @@ const styles = StyleSheet.create({
   errorText: {
     color: "red",
     fontSize: 15,
-    marginBottom: 10,
-    height: 20,
+    // marginBottom: 10,
+    // height: 20,
   },
 });

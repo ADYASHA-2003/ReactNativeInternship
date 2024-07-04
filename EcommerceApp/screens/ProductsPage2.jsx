@@ -129,21 +129,6 @@ export default function ProductsPage2() {
     fetchProducts();
   }, []);
   
-
-  // const filteredProducts = useMemo(() => {
-  //   if (!products || products.length === 0) return [];
-
-  //   const selectedCategoryLower = selectedCategory.toLowerCase();
-
-  //   if (selectedCategoryLower === "all") {
-  //     return products;
-  //   } else {
-  //     return products.filter(
-  //       (product) => product.category.toLowerCase() === selectedCategoryLower
-  //     );
-  //   }
-  // }, [products, selectedCategory]);
-
   const filteredProducts = useMemo(() => {
     if (!products || products.length === 0) return [];
   

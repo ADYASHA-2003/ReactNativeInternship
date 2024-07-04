@@ -22,8 +22,8 @@ export default function App() {
   return (
       <ShoppingProvider>
     <View style={styles.container}>
-      {/* <Welcome/> */}
-      <WelcomeNew/>
+      <Welcome/>
+      {/* <WelcomeNew/> */}
       {/* <TestComponent/> */}
       {/* <NestedListDemo/> */}
       {/* <Welcome3/> */}

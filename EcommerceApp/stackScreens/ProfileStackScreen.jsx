@@ -10,11 +10,11 @@ const ProfileStackScreen = () => {
   return (
     // <NavigationContainer>
       <ProfileStack.Navigator>
-        <ProfileStack.Screen name="Account" component={Account} options={{headerShown:false}}/>
+        <ProfileStack.Screen name="YourAccount" component={Account} options={{headerShown:false}}/>
         <ProfileStack.Screen
           name="ProfileForm"
           component={ProfileForm}
-          options={{ presentation: 'modal' ,headerShown:false}}
+          options={{ presentation: 'modal' ,headerTitle:'',headerTransparent:true}}
         />
       </ProfileStack.Navigator>
     // </NavigationContainer>

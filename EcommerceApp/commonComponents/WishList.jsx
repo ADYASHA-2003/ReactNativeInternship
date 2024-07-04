@@ -14,13 +14,6 @@ import { ShoppingContext } from "../contexts/shoppingContext";
 const WishList = () => {
   const { wishlist , wishlistDispatch } = useContext(ShoppingContext);
 
-  // const removeFromWishlist = (productId) => {
-  //   wishlistDispatch({
-  //     type: "REMOVE_FROM_WISHLIST",
-  //     payload: productId,
-  //   });
-  // };
-
   useEffect(() => {
     console.log("Inside WishList", wishlist);
   }, [wishlist]);

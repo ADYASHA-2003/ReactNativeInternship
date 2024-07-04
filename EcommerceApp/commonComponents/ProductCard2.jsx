@@ -24,25 +24,14 @@ const ProductCard2 = ({
   updateQuantity,
   isWishlist = false,
   isGrid
-  // removeFromWishlist,
 }) => {
   const navigation = useNavigation();
   const { cartDispatch, cart, wishlistDispatch,wishlist } = useContext(ShoppingContext);
   const [clicked, setClicked] = useState(false);
 
-  // useEffect(() => {  
-  //   if (wishlist && wishlist.wishlist) {
-  //     // Check if product is in wishlist
-  //     const isInWishlist = wishlist.wishlist.some(item => item.id === product.id);
-  //     setClicked(isInWishlist);
-  //   }
-  // }, [wishlist, product.id]);
-
   useEffect(() => {
-    // Memoize the computation
     const isInWishlist = wishlist && wishlist.wishlist && wishlist.wishlist.some(item => item.id === product.id);
   
-    // Update state only if isInWishlist changes
     if (isInWishlist !== clicked) {
       setClicked(isInWishlist);
     }
@@ -77,13 +66,9 @@ const ProductCard2 = ({
     }
   };
 
-  const newPrice = isCart
-    ? (product.price * quantity).toFixed(2)
-    : product.price;
 
   return (
     <TouchableOpacity
-      // style={styles.cards}
       style={[styles.card, isCart && styles.cartCard]}
       onPress={() => navigation.navigate("ProductDetailsPage", { product })}
     >
@@ -99,13 +84,11 @@ const ProductCard2 = ({
             onPress={() => {
               setClicked(!clicked)
               if (!clicked) {
-                // Add to wishlist
                 wishlistDispatch({
                   type: WISHLIST_ACTIONS.ADD_TO_WISHLIST,
                   payload: product,
                 });
               } else {
-                // Remove from wishlist
                 wishlistDispatch({
                   type: WISHLIST_ACTIONS.REMOVE_FROM_WISHLIST,
                   payload: product.id,
@@ -149,7 +132,7 @@ const ProductCard2 = ({
           <View style={{ flexDirection: "row", gap: 5 }}>{renderTags()}</View>
 
           <Text style={styles.price}>
-            Price: {isCart ? `$${newPrice}` : `$${product.price}`}
+            Price: {product.price}
           </Text>
 
           <Text
@@ -261,15 +244,10 @@ const styles = StyleSheet.create({
     padding: 5,
     borderRadius: 7,
   },
-  // wishlistBtn: {
-  //   backgroundColor: "lightgray",
-  //   // borderRadius:30,
-  //   alignSelf: "center",
-  // },
   cartDetailsContainer: {
-    alignItems: "flex-start",
-    flex: 1,
-    marginVertical: 10,
+    alignItems: "center",
+    // flex: 1,
+    // marginVertical: 10,
     paddingHorizontal: 10,
   },
   detailsContainer: {
@@ -284,8 +262,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginHorizontal: 1,
-    // borderRadius:100,
-    // backgroundColor:'lightgray'
   },
   cartCard: {
     flexDirection: "column",

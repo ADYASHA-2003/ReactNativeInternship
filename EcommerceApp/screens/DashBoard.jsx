@@ -6,17 +6,6 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 const DashBoard = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.text}> Dashboard Screen </Text>
-      <Button
-        title="Click to navigate to home screen"
-        onPress={() =>
-          navigation.navigate("Home", {
-            param1: "Home",
-            param2: "SomeValue",
-          })
-        }
-      /> */}
-
       <CustomButton
         icon={<AntDesign name="heart" size={20} color="#ffffff" />}
         text="Add To Wishlist"

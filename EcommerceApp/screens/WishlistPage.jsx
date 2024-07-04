@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext ,useState,useEffect} from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import WishList from '../commonComponents/WishList';
+import { ShoppingContext } from '../contexts/shoppingContext';
 
 const WishlistPage = () => {
+    const {wishlist} = useContext(ShoppingContext)
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Wishlist</Text>
+            {/* <Text style={styles.itemCount}> ({wishlist.length} Items)</Text> */}
             <WishList/>
         </View>
     );
