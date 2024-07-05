@@ -17,12 +17,10 @@ const Stack = createNativeStackNavigator();
 
 const Welcome = () => {
   return (
-    <ShoppingProvider>
-    <NavigationContainer>
     <View style={styles.container}>
       <Stack.Navigator initialRouteName="Home">
         {/* <Stack.Screen name="Splash" component={Splash} options={{headerShown:false}}/> */}
-        <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
+        <Stack.Screen name="Home" component={Home} options={{headerShown:false}} />
         <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
         <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
         <Stack.Screen name="DashBoard" component={WelcomeNew} options={{headerShown:false}}/>
@@ -30,8 +28,6 @@ const Welcome = () => {
         <Stack.Screen name="ButtonsDisplay" component={ButtonsDisplay} /> */}
       </Stack.Navigator>
     </View>
-    </NavigationContainer>
-    </ShoppingProvider>
   );
 };
 

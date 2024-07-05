@@ -30,7 +30,7 @@ const ProductCard2 = ({
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
-    const isInWishlist = wishlist && wishlist.wishlist && wishlist.wishlist.some(item => item.id === product.id);
+    const isInWishlist = wishlist && wishlist.some(item => item.id === product.id);
   
     if (isInWishlist !== clicked) {
       setClicked(isInWishlist);
@@ -65,7 +65,6 @@ const ProductCard2 = ({
       updateQuantity(product.id, quantity - 1);
     }
   };
-
 
   return (
     <TouchableOpacity
@@ -132,7 +131,7 @@ const ProductCard2 = ({
           <View style={{ flexDirection: "row", gap: 5 }}>{renderTags()}</View>
 
           <Text style={styles.price}>
-            Price: {product.price}
+            Price: ${product.price}
           </Text>
 
           <Text
@@ -156,6 +155,7 @@ const ProductCard2 = ({
                     type: CART_ACTIONS.ADD_TO_CART,
                     payLoad: product,
                   });
+                  wishlistDispatch({ type: WISHLIST_ACTIONS.REMOVE_FROM_WISHLIST, payload: product.id });
                 }}
               >
                 <Text style={styles.btnText}>ADD TO CART</Text>
@@ -262,6 +262,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginHorizontal: 1,
+    paddingHorizontal:3,
   },
   cartCard: {
     flexDirection: "column",
@@ -333,7 +334,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 5,
     right: 5,
-    backgroundColor: "#D3D3D3",
+    // backgroundColor: "#D3D3D3",
     padding: 3.5,
     borderRadius: 30,
     zIndex: 1,

@@ -1,4 +1,5 @@
 import React from "react";
+// import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -11,6 +12,8 @@ import {
 } from "react-native";
 
 const MainHome = () => {
+
+  // const navigation = useNavigation();
 
   const reviews = [
     {
@@ -137,9 +140,10 @@ const MainHome = () => {
 
       <TouchableOpacity
         style={styles.exploreButton}
-        onPress={() => console.log("Explore all categories")}
+        // onPress={() => navigation.navigate("Product")}
+        onPress={() => console.log("Explore All Categories")}
       >
-        <Text style={styles.exploreText}>Explore All</Text>
+        <Text style={styles.exploreText}>EXPLORE ALL</Text>
       </TouchableOpacity>
 
       <View style={styles.bannerSection}>
@@ -184,8 +188,7 @@ const MainHome = () => {
       </View>
 
       <ScrollView style={styles.container}>
-      {/* Existing sections like Categories, Banners, Brands */}
-      
+
       {/* Reviews or Ratings Section */}
       <View style={styles.reviewsSection}>
         <Text style={styles.title}>Customer Reviews</Text>
@@ -261,20 +264,17 @@ const styles = StyleSheet.create({
   },
   exploreButton: {
     padding: 10,
-    borderBottomColor: "gold",
-    borderBottomWidth: 1,
-    borderBottomLeftRadius: 1,
-    borderBottomRightRadius: 1,
+    backgroundColor:'gold',
     margin: 20,
     borderRadius: 10,
-    width: "50%",
+    width: "40%",
     alignSelf: "center",
   },
   exploreText: {
     textAlign: "center",
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "bold",
-    color: "black",
+    color: "white",
   },
   bannerSection: {
     marginTop: 20,

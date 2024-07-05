@@ -7,17 +7,8 @@ const Cart = ({ navigation}) => {
   const [quantities, setQuantities] = useState({});
   const { cart } = useContext(ShoppingContext);
 
-  // const [cartLength, setCartLength] = useState(0); // Local state for cart length
-
-  // useEffect(() => {
-  //   setCartLength(cart.cart.length); // Update cart length state
-  //   if (onUpdateCartLength) {
-  //     onUpdateCartLength(cart.cart.length); // Pass updated cart length to parent component
-  //   }
-  // }, [cart.cart.length, onUpdateCartLength]);
-
   const calculateTotal = () => {
-    return cart.cart
+    return cart
       ?.reduce((sum, item) => {
         const itemTotal = item.price * (quantities[item.id] || 1);
         return sum + itemTotal;
@@ -34,7 +25,7 @@ const Cart = ({ navigation}) => {
 
   const handleCheckout = () => {
     navigation.navigate('CheckoutSummary', {
-      items: cart.cart.map(item => ({
+      items: cart.map(item => ({
         id: item.id,
         title: item.title,
         quantity: quantities[item.id] || 1,
@@ -48,10 +39,11 @@ const Cart = ({ navigation}) => {
     <View style={styles.container}>
       <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
       <Text style={styles.title}>Shopping Cart</Text>
-      <Text style={styles.itemCount}> ({cart.cart.length} Items)</Text>
+      <Text style={styles.itemCount}> ({cart.length} Items)</Text>
       </View>
 
       <CartList quantities={quantities} updateQuantity={updateQuantity} />
+      {cart.length > 0 && (
       <View style={styles.totalContainer}>
         <Text style={styles.totalText}>Total: ${calculateTotal()}</Text>
         <TouchableOpacity
@@ -61,6 +53,7 @@ const Cart = ({ navigation}) => {
           <Text style={styles.checkoutText}>CHECKOUT</Text>
         </TouchableOpacity>
       </View>
+      )}
     </View>
   );
 };

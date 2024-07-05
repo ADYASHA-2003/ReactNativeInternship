@@ -17,11 +17,26 @@ import {
 import { useRef,useState } from "react";
 import ReviewCard from "../commonComponents/ReviewCard";
 import SimilarProducts from "../commonComponents/SimilarProducts";
+import { WISHLIST_ACTIONS } from "../actions/wishlistAction";
+import { CART_ACTIONS } from "../actions/cartActions";
+import { useContext ,useEffect} from "react";
+import { ShoppingContext } from "../contexts/shoppingContext";
 
 export default function ProductDetailsPage({ route }) {
   const { product } = route.params;
   const swipeableRef = useRef(null);
   const [likedReviews, setLikedReviews] = useState({});
+  const [clicked, setClicked] = useState(false);
+  const {wishlist, wishlistDispatch,cart,cartDispatch} = useContext(ShoppingContext)
+
+
+  useEffect(() => {
+    const isInWishlist = wishlist && wishlist.some(item => item.id === product.id);
+  
+    if (isInWishlist !== clicked) {
+      setClicked(isInWishlist);
+    }
+  }, [wishlist, product.id, clicked]);
 
   const renderRightActions = (reviewId,index) => {
     const isLiked = likedReviews[reviewId];
@@ -49,12 +64,39 @@ export default function ProductDetailsPage({ route }) {
   };
 
   const handleBuyNow = () => {
-    console.log("Buy Now button pressed");
+    console.log("Add to cart inside details page");
+    cartDispatch({
+      type: CART_ACTIONS.ADD_TO_CART,
+      payLoad: product,
+    });
   };
 
   return (
     <ScrollView>
       <View style={styles.container}>
+      <TouchableOpacity
+            style={styles.wishlistBtn}
+            onPress={() => {
+              setClicked(!clicked)
+              if (!clicked) {
+                wishlistDispatch({
+                  type: WISHLIST_ACTIONS.ADD_TO_WISHLIST,
+                  payload: product,
+                });
+              } else {
+                wishlistDispatch({
+                  type: WISHLIST_ACTIONS.REMOVE_FROM_WISHLIST,
+                  payload: product.id,
+                });
+              }
+            }}
+          >
+            <AntDesign
+          name={clicked ? "heart" : "hearto"}
+          size={28}
+          color={clicked ? "red" : "black"}
+        />
+          </TouchableOpacity>
         <View style={styles.imageContainer}>
           <Image
             style={{ height: 300, width: 300, alignSelf: "center" }}
@@ -195,7 +237,7 @@ export default function ProductDetailsPage({ route }) {
         <View style={styles.horizontalBar} />
 
         <TouchableOpacity style={styles.buyNowButton} onPress={handleBuyNow}>
-          <Text style={styles.buyNowButtonText}>BUY NOW</Text>
+          <Text style={styles.buyNowButtonText}>ADD TO CART</Text>
         </TouchableOpacity>
 
 
@@ -224,7 +266,7 @@ export default function ProductDetailsPage({ route }) {
         <SimilarProducts category={product.category} currentProductId={product.id}/>
 
       </View>
-    </ScrollView>
+     </ScrollView>
   );
 }
 
@@ -233,6 +275,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: "#fff",
+  },
+  wishlistBtn:{
+    // justifyContent:'flex-end'
+    alignSelf:'flex-end',
+    marginTop:25
   },
   review: {
     backgroundColor: "lightblue",

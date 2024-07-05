@@ -8,8 +8,10 @@ const WishlistPage = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Wishlist</Text>
-            {/* <Text style={styles.itemCount}> ({wishlist.length} Items)</Text> */}
+            <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+            <Text style={styles.title}>Your Wishlist</Text>
+            <Text style={styles.itemCount}> {wishlist.length === 0 ? ' (0 Items)' : wishlist.length === 1 ? ' (1 Item)' : ` (${wishlist.length} Items)`}</Text>
+            </View>
             <WishList/>
         </View>
     );

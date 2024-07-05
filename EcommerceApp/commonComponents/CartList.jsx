@@ -15,14 +15,14 @@ const CartList = ({ quantities, updateQuantity }) => {
   const { cart } = useContext(ShoppingContext);
 
   useEffect(() => {
-    console.log("Inside CartList ", cart.cart);
+    console.log("Inside CartList ", cart);
     return () => {};
   }, []);
 
   return (
 
       <View style={styles.container}>
-        {cart.cart.length === 0 || cart.length === 0 ? (
+        {cart.length === 0 ? (
           <View style={styles.emptyCartContainer}>
             <Image
               source={{
@@ -38,7 +38,7 @@ const CartList = ({ quantities, updateQuantity }) => {
               {/* <ScrollView contentContainerStyle={styles.scrollViewContainer}> */}
             <FlatList
               style={styles.flatView}
-              data={cart.cart}
+              data={cart}
               renderItem={({ item }) => (
                 <ProductCard2
                   key={item.id}
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 250,
+    // marginTop: 250,
   },
   emptyCartText: {
     fontSize: 18,
