@@ -20,7 +20,7 @@ const ProductsHeader = ({
 
   const handleSortToggle = () => {
     onSortToggle();
-    toggleSortTooltip(); // Close tooltip after toggling sort
+    toggleSortTooltip(); 
   };
 
   const handleSearch = (text) => {

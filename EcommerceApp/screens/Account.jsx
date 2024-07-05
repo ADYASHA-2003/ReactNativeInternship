@@ -42,6 +42,7 @@ const Account = () => {
 
   const handleLogout = () => {
     console.log("Logout");
+    navigation.navigate('Home')
   };
 
   return (

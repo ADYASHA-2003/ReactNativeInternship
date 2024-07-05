@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import { View, StyleSheet, Text, TouchableOpacity, Modal } from "react-native";
-import { AntDesign } from "@expo/vector-icons"; // Import AntDesign icons from expo
+import { AntDesign } from "@expo/vector-icons";
+import { CART_ACTIONS } from "../actions/cartActions";
+import { ShoppingContext } from "../contexts/shoppingContext";
 
 const PaymentScreen = ({ navigation, route }) => {
-  const { total } = route.params;
+  const { items,total } = route.params;
   const [selectedPaymentMode, setSelectedPaymentMode] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const { cartDispatch} = useContext(ShoppingContext);
 
   const handlePayment = () => {
     if (!selectedPaymentMode) {
@@ -14,12 +18,27 @@ const PaymentScreen = ({ navigation, route }) => {
     }
 
     console.log(`Processing payment with ${selectedPaymentMode}`);
-    setShowModal(true); 
+    setShowModal(true);
   };
 
   const handleConfirmPayment = () => {
-    navigation.navigate("Cart");
+    setShowModal(false);
+    setShowSuccessModal(true);
   };
+
+  const handlePaymentSuccess = () => {
+    setShowModal(false); 
+    cartDispatch({
+      type: CART_ACTIONS.REMOVE_ALL,
+    })
+    navigation.navigate("Orders", {
+      items,
+      total,
+      shippingDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toDateString(), 
+      paymentMethod: selectedPaymentMode,
+    });
+  };
+  
 
   return (
     <View style={styles.container}>
@@ -35,9 +54,7 @@ const PaymentScreen = ({ navigation, route }) => {
         <AntDesign
           name="creditcard"
           size={24}
-          color={
-            selectedPaymentMode === "creditCard" ? "gold" : "black"
-          } 
+          color={selectedPaymentMode === "creditCard" ? "gold" : "black"}
         />
         <Text style={styles.paymentModeText}>Credit Card</Text>
       </TouchableOpacity>
@@ -52,9 +69,7 @@ const PaymentScreen = ({ navigation, route }) => {
         <AntDesign
           name="wallet"
           size={24}
-          color={
-            selectedPaymentMode === "paypal" ? "gold" : "black"
-          } 
+          color={selectedPaymentMode === "paypal" ? "gold" : "black"}
         />
         <Text style={styles.paymentModeText}>PayPal</Text>
       </TouchableOpacity>
@@ -69,9 +84,7 @@ const PaymentScreen = ({ navigation, route }) => {
         <AntDesign
           name="swap"
           size={24}
-          color={
-            selectedPaymentMode === "cod" ? "gold" : "black"
-          } 
+          color={selectedPaymentMode === "cod" ? "gold" : "black"}
         />
         <Text style={styles.paymentModeText}>Cash on Delivery</Text>
       </TouchableOpacity>
@@ -113,6 +126,33 @@ const PaymentScreen = ({ navigation, route }) => {
                 Please choose a payment mode to proceed.
               </Text>
             )}
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={showSuccessModal}
+        onRequestClose={() => setShowSuccessModal(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>
+            {selectedPaymentMode === "cod"
+                ? "Order Placed. To be dispatched soon..."
+                : "Payment Successful..."}
+              </Text>
+            <Text style={styles.modalText}>Thank you for your purchase!</Text>
+            <Text style={styles.modalText}>
+              Your order will be shipped by: {new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toDateString()}
+            </Text>
+            <TouchableOpacity
+              style={styles.confirmButton}
+              onPress={handlePaymentSuccess}
+            >
+              <Text style={styles.confirmButtonText}>Go to Orders</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -181,6 +221,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 12,
+    textAlign:'center'
   },
   modalText: {
     fontSize: 15,
@@ -200,10 +241,9 @@ const styles = StyleSheet.create({
   confirmButtonText: {
     color: "white",
     fontWeight: "bold",
-    textAlign:'center'
+    textAlign: "center",
   },
 });
 
 export default PaymentScreen;
-
 

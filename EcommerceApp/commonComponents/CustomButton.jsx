@@ -1,6 +1,5 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const CustomButton = ({
   size = 'medium',
@@ -102,7 +101,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    borderWidth: 1, // Default border style
+    borderWidth: 1,
   },
   buttonContent: {
     flexDirection: 'row',

@@ -39,7 +39,7 @@ const Cart = ({ navigation}) => {
     <View style={styles.container}>
       <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
       <Text style={styles.title}>Shopping Cart</Text>
-      <Text style={styles.itemCount}> ({cart.length} Items)</Text>
+      <Text style={styles.itemCount}> {cart.length === 0 ? ' (0 Items)' : cart.length === 1 ? ' (1 Item)' : ` (${cart.length} Items)`}</Text>
       </View>
 
       <CartList quantities={quantities} updateQuantity={updateQuantity} />
@@ -73,7 +73,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "lightgray",
+    borderWidth:1,
+    borderTopColor:'gold',
+    borderLeftColor:'gold',
+    borderRightColor:'gold',
+    borderBottomColor:'white',
+    backgroundColor:'white',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     paddingVertical: 20,

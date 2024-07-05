@@ -6,15 +6,13 @@ import {
   View,
   Text,
   Alert,
+  ImageBackground,
 } from "react-native";
-import ProductsPage2 from "../screens/ProductsPage2";
-import DashBoard from '../screens/DashBoard'
 import { ShoppingContext } from "../contexts/shoppingContext";
 import { AUTH_USER_ACTIONS } from "../actions/authUserActions";
 
-//Stack screen for this page do headerShown : false
 export default function LoginPage({ navigation }) {
-  const {authUserDispatch} = useContext(ShoppingContext)
+  const { authUserDispatch } = useContext(ShoppingContext);
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
@@ -69,107 +67,93 @@ export default function LoginPage({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.initialText}>Login to Continue</Text>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Email</Text>
-        <TextInput
-          style={styles.input}
-          ref={emailInputRef}
-          onChangeText={(text) => setEmail(text)}
-          value={email}
-          placeholder="Enter Registered Email Address"
-        />
-        {emailError ? <Text style={styles.errorText}>{emailError}</Text> : null}
-      </View>
+    <ImageBackground
+      source={{uri:'https://previews.123rf.com/images/lux100/lux1001603/lux100160300058/54243109-illustration-of-seamless-pattern-wiht-doodle-supermarket-elements.jpg'}} // Replace with your image path
+      style={styles.background}
+      imageStyle={{opacity:0.4}}
+    >
+      <View style={styles.container}>
+        <Text style={styles.initialText}>Login to Continue</Text>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Email</Text>
+          <TextInput
+            style={styles.input}
+            ref={emailInputRef}
+            onChangeText={(text) => setEmail(text)}
+            value={email}
+            placeholder="Enter Registered Email Address"
+          />
+          {emailError ? (
+            <Text style={styles.errorText}>{emailError}</Text>
+          ) : null}
+        </View>
 
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Password</Text>
-        <TextInput
-          style={styles.input}
-          ref={passInputRef}
-          secureTextEntry={true}
-          onChangeText={(text) => setPass(text)}
-          value={pass}
-          placeholder="Enter Password"
-        />
-        {passError ? <Text style={styles.errorText}>{passError}</Text> : null}
-      </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Password</Text>
+          <TextInput
+            style={styles.input}
+            ref={passInputRef}
+            secureTextEntry={true}
+            onChangeText={(text) => setPass(text)}
+            value={pass}
+            placeholder="Enter Password"
+          />
+          {passError ? (
+            <Text style={styles.errorText}>{passError}</Text>
+          ) : null}
+        </View>
 
-      <TouchableOpacity
-        style={styles.submitBtn}
-        onPress={handleLogin}
-        onLongPress={() =>
-          //   Alert.alert("Click once to proceed on submitting login form");
-          // navigation.navigate('DashBoard')
-          {
-            console.log("Input mail",email);
-            console.log("Input Password",pass);
-            fetch("https://dummyjson.com/auth/login",{
-              method:'POST',
-              headers:{"Content-Type":"application/json"},
-              body:JSON.stringify({
-                username: 'emilys',
-                password:'emilyspass',
-              })
-            })
-            .then(async(res)=>{
-              const data = await res.json()
-              if(!res.ok){
-                console.log("Error");
-                setErrorMessage(data?.message || "Somrthing went wrong")
-              }
-              else{
-                authUserDispatch({
-                  type:AUTH_USER_ACTIONS.SET_ALL_USERS,
-                  payload:data
-                })
-                navigation.navigate('DashBoard')
-              }
-            })
-          }
-        }
-      >
+        <TouchableOpacity style={styles.submitBtn} onPress={handleLogin}>
+          <Text
+            style={{
+              textAlign: "center",
+              color: "white",
+              fontWeight: "600",
+              fontSize: 15,
+            }}
+          >
+            Login
+          </Text>
+        </TouchableOpacity>
+
         <Text
           style={{
             textAlign: "center",
-            color: "white",
-            fontWeight: "600",
+            marginTop: 15,
+            fontWeight: "400",
             fontSize: 15,
           }}
         >
-          Login
+          Don't have an account?
+          <Text
+            style={{ color: "blue" }}
+            onPress={() => navigation.navigate("Register")}
+          >
+            {" "}
+            Register!
+          </Text>
         </Text>
-      </TouchableOpacity>
-
-      <Text
-        style={{
-          textAlign: "center",
-          marginTop: 15,
-          fontWeight: "400",
-          fontSize: 15,
-        }}
-      >
-        Don't have an account?
-        <Text
-          style={{ color: "blue" }}
-          onPress={() => navigation.navigate("Register")}
-        >
-          {" "}
-          Register!
-        </Text>
-      </Text>
-    </View>
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    // opacity:0.2
+    // backgroundColor: 'rgba(255, 255, 255, 0.2)'
+  },
+  container: {
+    // flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor:'white',
-    // background: 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,0,0,1) 100%)',
+    marginHorizontal:20,
+    padding:30,
+    borderRadius:30
   },
   initialText: {
     textAlign: "center",
@@ -177,15 +161,24 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     fontSize: 20,
   },
+  inputContainer: {
+    marginBottom: 15,
+    // backgroundColor:'white'
+  },
+  label: {
+    fontWeight: "600",
+    fontSize: 15,
+    marginLeft: 3,
+  },
   input: {
     height: 45,
     width: 300,
     borderWidth: 1,
     borderRadius: 10,
     padding: 10,
-    // margin:10,
     marginBottom: 5,
     borderColor: "gray",
+    backgroundColor: "white",
   },
   submitBtn: {
     backgroundColor: "gold",
@@ -196,18 +189,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 12,
   },
-  inputContainer:{
-    marginBottom:15
-  },
-  label: {
-    fontWeight: "600",
-    fontSize: 15,
-    marginLeft: "3px",
-  },
   errorText: {
     color: "red",
     fontSize: 15,
-    // marginBottom: 10,
-    // height: 20,
   },
 });
+

@@ -5,13 +5,6 @@ import { ShoppingContext } from '../contexts/shoppingContext';
 
 const CartIconBadge = ({ color, size }) => {
   const { cart } = useContext(ShoppingContext);
-//   if (!Array.isArray(cart)) {
-//     return null; // or handle appropriately
-//   }
-
-// if (!Array.isArray(cart) || cart.length === 0) {
-//     return null; // or handle appropriately
-//   }
 console.log('Inside CartIcon Badge component:',Array.isArray(cart));
   const itemCount = cart.cart.reduce((sum, item) => sum + item.quantity, 0);
 

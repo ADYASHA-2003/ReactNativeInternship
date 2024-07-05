@@ -35,7 +35,6 @@ const CartList = ({ quantities, updateQuantity }) => {
           </View>
         ) : (
           <>
-              {/* <ScrollView contentContainerStyle={styles.scrollViewContainer}> */}
             <FlatList
               style={styles.flatView}
               data={cart}
@@ -51,7 +50,6 @@ const CartList = ({ quantities, updateQuantity }) => {
               keyExtractor={(item) => item.id.toString()}
               numColumns={1}
             />
-            {/* </ScrollView> */}
           </>
         )}
       </View>

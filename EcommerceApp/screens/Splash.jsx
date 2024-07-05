@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "50%",
     zIndex: 1, 
-    // backgroundColor: "rgba(255, 255, 255, 0.8)", 
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 10,

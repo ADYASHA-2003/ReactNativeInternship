@@ -277,7 +277,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   wishlistBtn:{
-    // justifyContent:'flex-end'
     alignSelf:'flex-end',
     marginTop:25
   },

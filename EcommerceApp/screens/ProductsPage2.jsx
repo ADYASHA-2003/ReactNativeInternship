@@ -18,8 +18,8 @@ export default function ProductsPage2() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortAsc, setSortAsc] = useState(true); // true for low to high, false for high to low
-  const [isGrid, setIsGrid] = useState(true); // true for grid view, false for list view
+  const [sortAsc, setSortAsc] = useState(true); 
+  const [isGrid, setIsGrid] = useState(true); 
 
   const { products, productsDispatch } = useContext(ShoppingContext);
   const productStorageKey = "EcommerceApp_Products";
@@ -40,46 +40,6 @@ export default function ProductsPage2() {
   const handleLayoutToggle = () => {
     setIsGrid((prevIsGrid) => !prevIsGrid);
   };
-
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const storedProducts = await AsyncStorage.getItem(productStorageKey);
-  //       console.log("Fetched products from AsyncStorage:", JSON.parse(storedProducts));
-  //       if (storedProducts) {
-  //         productsDispatch({
-  //           type: PRODUCT_ACTIONS.SET_ALL_PRODUCTS,
-  //           payload: JSON.parse(storedProducts),  //serialising and deserializing
-  //         });
-  //         setLoading(false);
-  //       } else {
-  //         console.log("No products found in AsyncStorage, fetching from API");
-  //         const response = await fetch("https://dummyjson.com/products");
-  //         const data = await response.json();
-  //         const productsWithUniqueIds = data.products.map((product) => ({
-  //           ...product,
-  //           new_id: `${product.category.toLowerCase()}_${product.id}`,
-  //         }));
-
-  //         await AsyncStorage.setItem(
-  //           productStorageKey,
-  //           JSON.stringify(productsWithUniqueIds)
-  //         );
-
-  //         productsDispatch({
-  //           type: PRODUCT_ACTIONS.SET_ALL_PRODUCTS,
-  //           payload: productsWithUniqueIds,
-  //         });
-  //         setLoading(false);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching products:", error);
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchProducts();
-  // }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -194,7 +154,6 @@ export default function ProductsPage2() {
       )}
       <FlatList
         data={filteredProducts}
-        // numColumns={2}
         numColumns={isGrid ? 2 : 1}
         key={isGrid ? "grid" : "list"}
         keyExtractor={(item) => item.new_id.toString()}

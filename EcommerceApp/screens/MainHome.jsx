@@ -12,7 +12,6 @@ import {
 } from "react-native";
 
 const MainHome = () => {
-
   // const navigation = useNavigation();
 
   const reviews = [
@@ -22,26 +21,27 @@ const MainHome = () => {
       rating: 4.5,
       reviewText:
         "Great products and fast delivery! Would definitely recommend.",
-      personImage:'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww'
+      personImage:
+        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww",
     },
     {
       id: 2,
       userName: "Jane Smith",
       rating: 5.0,
-      reviewText:
-        "Amazing service and quality. Will shop here again!",
-      personImage:'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D'
+      reviewText: "Amazing service and quality. Will shop here again!",
+      personImage:
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D",
     },
     {
       id: 3,
       userName: "Alex Johnson",
       rating: 3.5,
-      reviewText:
-        "Products are good but shipping took longer than expected.",
-      personImage:'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fHww'
+      reviewText: "Products are good but shipping took longer than expected.",
+      personImage:
+        "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXZhdGFyfGVufDB8fDB8fHww",
     },
   ];
-  
+
   const categories = [
     {
       name: "Grocery",
@@ -112,123 +112,133 @@ const MainHome = () => {
   ];
 
   return (
-    <ScrollView style={styles.container}>
-      <View>
-        <Text style={styles.title}>Categories</Text>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.categoryContainer}
-        >
-          {categories.map((category, index) => (
-            <TouchableOpacity
-              key={index}
-              style={styles.categoryCard}
-              onPress={() => console.log("Category selected:", category.name)}
-            >
-              <ImageBackground
-                source={{ uri: category.image }}
-                style={styles.categoryImage}
-                imageStyle={styles.categoryImage}
+    <ImageBackground
+      source={{
+        uri: "https://previews.123rf.com/images/lux100/lux1001603/lux100160300058/54243109-illustration-of-seamless-pattern-wiht-doodle-supermarket-elements.jpg",
+      }} // Replace with your image path
+      style={styles.background}
+      imageStyle={{ opacity: 0.6 }}
+    >
+      <ScrollView style={styles.container}>
+        <View>
+          <Text style={styles.title}>Categories</Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.categoryContainer}
+          >
+            {categories.map((category, index) => (
+              <TouchableOpacity
+                key={index}
+                style={styles.categoryCard}
+                onPress={() => console.log("Category selected:", category.name)}
               >
-                <Text style={styles.categoryText}>{category.name}</Text>
-              </ImageBackground>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
+                <ImageBackground
+                  source={{ uri: category.image }}
+                  style={styles.categoryImage}
+                  imageStyle={styles.categoryImage}
+                >
+                  <Text style={styles.categoryText}>{category.name}</Text>
+                </ImageBackground>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
 
-      <TouchableOpacity
-        style={styles.exploreButton}
-        // onPress={() => navigation.navigate("Product")}
-        onPress={() => console.log("Explore All Categories")}
-      >
-        <Text style={styles.exploreText}>EXPLORE ALL</Text>
-      </TouchableOpacity>
-
-      <View style={styles.bannerSection}>
-        <Text style={styles.title}>Top Sales of this Week</Text>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.bannerContainer}
+        <TouchableOpacity
+          style={styles.exploreButton}
+          // onPress={() => navigation.navigate("Product")}
+          onPress={() => console.log("Explore All Categories")}
         >
-          {banners.map((banner) => (
-            <TouchableOpacity key={banner.id} style={styles.bannerContainer}>
-              <Image
-                source={{ uri: banner.image }}
-                style={styles.bannerImage}
-              />
-              <View style={styles.bannerTextContainer}>
-                <Text style={styles.bannerTitle}>{banner.title}</Text>
-                <Text style={styles.bannerDescription}>
-                  {banner.description}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
+          <Text style={styles.exploreText}>EXPLORE ALL</Text>
+        </TouchableOpacity>
 
-      <View style={styles.brandsSection}>
-        <Text style={styles.title}>Luxury Brands We Deal In</Text>
-        <View style={styles.brandsContainer}>
-          {brands.map((brand, index) => (
-            <View
-              key={index}
-              style={[
-                styles.brandCircle,
-                { backgroundColor: pastelColors[index % pastelColors.length] },
-              ]}
-            >
-              <Text style={styles.brandText}>{brand.name}</Text>
-            </View>
+        <View style={styles.bannerSection}>
+          <Text style={styles.title}>Top Sales of this Week</Text>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.bannerContainer}
+          >
+            {banners.map((banner) => (
+              <TouchableOpacity key={banner.id} style={styles.bannerContainer}>
+                <Image
+                  source={{ uri: banner.image }}
+                  style={styles.bannerImage}
+                />
+                <View style={styles.bannerTextContainer}>
+                  <Text style={styles.bannerTitle}>{banner.title}</Text>
+                  <Text style={styles.bannerDescription}>
+                    {banner.description}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+
+        <View style={styles.brandsSection}>
+          <Text style={styles.title}>Luxury Brands We Deal In</Text>
+          <View style={styles.brandsContainer}>
+            {brands.map((brand, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.brandCircle,
+                  {
+                    backgroundColor: pastelColors[index % pastelColors.length],
+                  },
+                ]}
+              >
+                <Text style={styles.brandText}>{brand.name}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+
+        {/* Reviews or Ratings Section */}
+        <View style={styles.reviewsSection}>
+          <Text style={styles.title}>Hear From Our Customers</Text>
+          {reviews.map((item, index) => (
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              <View key={index} style={styles.reviewContainer}>
+                <View style={styles.ratingContainer}>
+                  <Text style={styles.ratingText}>
+                    {item.rating.toFixed(1)}
+                  </Text>
+                  {/* Replace with your star icon */}
+                  <Image
+                    source={{
+                      uri: "https://cdn-icons-png.flaticon.com/128/2107/2107957.png",
+                    }}
+                    style={styles.starIcon}
+                  />
+                  <Image
+                    source={{ uri: item.personImage }}
+                    style={styles.personImages}
+                  />
+                </View>
+                <Text style={styles.reviewUser}>{item.userName}</Text>
+                <Text style={styles.reviewText}>{item.reviewText}</Text>
+              </View>
+            </ScrollView>
           ))}
         </View>
-      </View>
-
-      <ScrollView style={styles.container}>
-
-      {/* Reviews or Ratings Section */}
-      <View style={styles.reviewsSection}>
-        <Text style={styles.title}>Customer Reviews</Text>
-        <FlatList
-          data={reviews}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View style={styles.reviewContainer}>
-              <View style={styles.ratingContainer}>
-                <Text style={styles.ratingText}>{item.rating.toFixed(1)}</Text>
-                <Image source={{uri:'https://cdn-icons-png.flaticon.com/128/2107/2107957.png'}} style={styles.starIcon} />
-                <Image
-                source={{ uri: item.personImage }}
-                style={styles.personImages}
-              />
-              </View>
-              <Text style={styles.reviewUser}>{item.userName}</Text>
-              <View style={{width:150}}>
-              <Text style={styles.reviewText}>{item.reviewText}</Text>
-              </View>
-              
-            </View>
-          )}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.reviewsList}
-        />
-      </View>
-
-      {/* Rest of your MainHome component */}
-    </ScrollView>
-    </ScrollView>
+      </ScrollView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    padding: 20,
+    padding: 16,
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
   },
   title: {
     fontSize: 15,
@@ -264,7 +274,7 @@ const styles = StyleSheet.create({
   },
   exploreButton: {
     padding: 10,
-    backgroundColor:'gold',
+    backgroundColor: "gold",
     margin: 20,
     borderRadius: 10,
     width: "40%",
@@ -339,16 +349,17 @@ const styles = StyleSheet.create({
   reviewsSection: {
     marginTop: 30,
     // paddingHorizontal: 5,
-    gap:5
+    marginBottom: 20,
+    gap: 5,
   },
   reviewContainer: {
     backgroundColor: "#f9f9f9",
     padding: 30,
     borderRadius: 10,
     marginBottom: 20,
-    borderBottomWidth:1,
-    borderBottomColor:'gold',
-    marginHorizontal:10
+    borderBottomWidth: 1,
+    borderBottomColor: "gold",
+    marginHorizontal: 10,
     // paddingHorizontal:10
   },
   ratingContainer: {
@@ -361,12 +372,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginRight: 5,
-    color: "#FFD700", // Golden color
+    color: "gold",
   },
   starIcon: {
     width: 20,
     height: 20,
-    tintColor: "#FFD700", // Golden color
+    tintColor: "gold",
   },
   reviewUser: {
     fontSize: 16,
@@ -377,16 +388,14 @@ const styles = StyleSheet.create({
   reviewText: {
     fontSize: 14,
     color: "#666",
-    flexWrap:'wrap'
+    flexWrap: "wrap",
   },
-  personImages:{
-    width:60,
-    height:60,
-    marginLeft:50,
-    borderRadius:20
-  }
+  personImages: {
+    width: 60,
+    height: 60,
+    marginLeft: 50,
+    borderRadius: 20,
+  },
 });
 
 export default MainHome;
-
-

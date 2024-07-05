@@ -114,7 +114,6 @@ const WelcomeNew = () => {
         options={{
           tabBarLabel: "Cart",
           tabBarIcon: ({ color, size }) => (
-            // <AntDesign name="shoppingcart" size={25} style={{ color: "black" }} />
             <View style={{ position: "relative" }}>
               <AntDesign name="shoppingcart" size={size} color={color} />
               {cartItemsCount > 0 && (
@@ -122,7 +121,6 @@ const WelcomeNew = () => {
                   <Text style={styles.badgeText}>{cartItemsCount}</Text>
                 </View>
               )}
-              {/* <CartIconBadge/> */}
             </View>
           ),
           tabBarActiveTintColor: "blue",
@@ -148,10 +146,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   badgeText: {
-    color: "yellow",
+    color: "white",
     fontSize: 12,
     fontWeight: "bold",
   },
 });
 
 export default WelcomeNew;
+
+
+

@@ -5,16 +5,14 @@ const { width, height } = Dimensions.get("window");
 
 export default function Home({ navigation, route }) {
   const image =
-    "https://images.unsplash.com/photo-1522643628976-0a170f6722ab?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D";
+    "https://images.unsplash.com/photo-1584473457406-6240486418e9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGdyb2Nlcnl8ZW58MHx8MHx8fDA%3D";
 
   return (
     <ImageBackground source={{ uri: image }} style={styles.imageBackground}>
       <View style={styles.textContainer}>
         <Text style={styles.title}>
-          Your One-Stop Shop for All Your Needs!
+          YOUR ONE STOP SHOP FOR ALL YOUR NEEDS!
         </Text>
-        <Text style={styles.subtitle}>Start Shopping With</Text>
-        <Text style={styles.logoText}>TROVE</Text>
       </View>
 
       <TouchableOpacity
@@ -25,7 +23,7 @@ export default function Home({ navigation, route }) {
         style={styles.button}
       >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Text style={{ color: "white", fontSize: 20, fontWeight: "500" }}>
+          <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>
             Get Started
           </Text>
           <Icon name="arrow-forward" size={20} color="white" style={{ marginLeft: 5 }} />

@@ -94,6 +94,11 @@ export default function RegisterPage({ navigation }) {
   };
 
   return (
+    <ImageBackground
+    source={{uri:'https://previews.123rf.com/images/lux100/lux1001603/lux100160300058/54243109-illustration-of-seamless-pattern-wiht-doodle-supermarket-elements.jpg'}} // Replace with your image path
+    style={styles.background}
+    imageStyle={{opacity:0.4}}
+  >
     <View style={styles.container}>
       <Text style={styles.initialText}>Create Your Free Account</Text>
 
@@ -198,15 +203,23 @@ export default function RegisterPage({ navigation }) {
         </Text>
       </Text>
     </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor:'white'
+    backgroundColor:'white',
+    marginHorizontal:20,
+    padding:30,
+    borderRadius:30
+  },
+  background: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
   initialText: {
     textAlign: "center",
@@ -240,13 +253,10 @@ const styles = StyleSheet.create({
   label: {
     fontWeight: "600",
     fontSize: 15,
-    // marginLeft: "3px",
     alignSelf: "flex-start",
   },
   errorText: {
     color: "red",
     fontSize: 15,
-    // marginBottom: 10,
-    // height: 20,
   },
 });
