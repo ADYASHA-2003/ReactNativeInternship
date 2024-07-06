@@ -200,7 +200,7 @@ const MainHome = () => {
         <View style={styles.reviewsSection}>
           <Text style={styles.title}>Hear From Our Customers</Text>
           {reviews.map((item, index) => (
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <ScrollView>
               <View key={index} style={styles.reviewContainer}>
                 <View style={styles.ratingContainer}>
                   <Text style={styles.ratingText}>
