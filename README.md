@@ -61,8 +61,8 @@
 
 ###### Product Details Page
 <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-  <img src="images/EcommerceApp/DetailPage1.jpg" alt="detailspage" width="200" style="border: 1px solid black;"/>
-  <img src="images/EcommerceApp/DetailPage2.jpg" alt="detailspage" width="200" style="border: 1px solid black;"/>
+  <img src="images/EcommerceApp/DetailPage1.jpg" alt="detailspage" width="225" style="border: 1px solid black;"/>
+  <img src="images/EcommerceApp/DetailPage2.jpg" alt="detailspage" width="225" style="border: 1px solid black;"/>
 </div>
 
 ###### Similar Products in Details Page fetched from the category whose product is currently being viewed
@@ -96,9 +96,9 @@ https://github.com/ADYASHA-2003/ReactNativeInternship/assets/106873284/cc46a412-
 
 ###### Payment Method Choice and Confirmation 
 <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-  <img src="images/EcommerceApp/PaymentMethodChoice.jpg" alt="choosemodeofpay" width="200" style="border: 1px solid black;"/>
-  <img src="images/EcommerceApp/PaymentMethod_Confirmation.jpg" alt="confirmPay" width="200" style="border: 1px solid black;"/>
-  <img src="images/EcommerceApp/Order_confirmation.jpg" alt="confirmOrder" width="200" style="border: 1px solid black;"/>  
+  <img src="images/EcommerceApp/PaymentMethodChoice.jpg" alt="choosemodeofpay" width="225" style="border: 1px solid black;"/>
+  <img src="images/EcommerceApp/PaymentMethod_Confirmation.jpg" alt="confirmPay" width="225" style="border: 1px solid black;"/>
+  <img src="images/EcommerceApp/Order_confirmation.jpg" alt="confirmOrder" width="225" style="border: 1px solid black;"/>  
 </div>
 
 ###### Orders Page and Emptied Cart when Order Placed Successfully
